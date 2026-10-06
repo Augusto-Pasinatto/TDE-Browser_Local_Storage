@@ -1,0 +1,37 @@
+@import url("styles/reset.css");
+@import url("styles/footer.css");
+@import url("styles/header.css");
+@import url("styles/main.css");
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  display: grid;
+  grid-template-rows: 10% 80% 10%;
+}
+
+:root {
+  --primary: #1b4c16;
+  --primary-hover: #143a10;
+  --primary-light: #3f7138;
+  --primary-dark: #10300d;
+
+  --secondary: #a4b86a;
+  --secondary-hover: #8fa354;
+  --secondary-light: #c7d59c;
+  --secondary-dark: #71853d;
+
+  --background: #f6f4eb;
+  --background-box: #eeecdf;
+  --background-dark: #e3e1d2;
+
+  --text: #1b2419;
+  --text-light: #667064;
+  --text-on-primary: #ffffff;
+
+  --accent: #c68b4a;
+  --accent-hover: #aa7138;
+  --accent-light: #e3bd8b;
+
+  --border: #d6d8c9;
+}
