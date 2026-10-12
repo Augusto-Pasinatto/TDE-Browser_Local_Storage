@@ -49,9 +49,11 @@
   padding: 0.5rem 1rem;
   border: 1px solid var(--border);
   border-radius: 16px;
-  margin-right: 1rem;
   color: var(--secondary);
   font-size: medium;
+}
+.margem__direita {
+  margin-right: 1rem;
 }
 .contatos__pesquisa-botao:hover {
   background-color: var(--primary-hover);
