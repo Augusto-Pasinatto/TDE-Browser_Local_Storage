@@ -13,22 +13,108 @@
         <header class="filtro__header">
           <h1>Filtragem</h1>
         </header>
-      </aside>
-      <section class="contatos">
-        <header class="contatos__pesquisa">
+        <section class="filtro__section filtro__section-pesquisa">
+          <div class="filtro__pesquisa-tipo">
+            <label>
+              <input type="radio" name="tipoPesquisa" value="nome" checked />
+              Nome
+            </label>
+            <label>
+              <input type="radio" name="tipoPesquisa" value="email" />
+              E-mail
+            </label>
+          </div>
           <input
             id="contatos__pesquisa-filtro"
             class="contatos__pesquisa-filtro"
             type="search"
             placeholder="Pesquisar"
           />
-          <h1 class="contatos__pesquisa-title">Lista De Contatos</h1>
+        </section>
+        <section class="filtro__favorito filtro__section">
+          <input class="favorito_input" id="favorito" type="checkbox" />
+          <label class="favorito_label" for="favorito">Favoritos</label>
+        </section>
+        <section class="filtro__categoria filtro__section">
+          <label class="categoria__label" for="categoria__input"
+            >Categoria:</label
+          >
+          <select
+            name="categoria"
+            class="categoria__input"
+            id="categoria__input"
+          >
+            <option value="nenhum">Nenhum</option>
+            <option value="pessoal">Pessoal</option>
+            <option value="trabalho">Trabalho</option>
+            <option value="familia">Família</option>
+            <option value="amigos">Amigos</option>
+            <option value="outros">Outros</option>
+          </select>
+        </section>
+        <section class="filtro__section">
           <button class="contatos__pesquisa-botao">Adicionar Contato</button>
-          <button class="contatos__pesquisa-botao margem__direita">
-            Editar Contato
-          </button>
+        </section>
+        <section class="filtro__section">
+          <button class="contatos__pesquisa-botao">Editar Contato</button>
+        </section>
+      </aside>
+      <section class="contatos">
+        <header class="contatos__pesquisa">
+          <h1 class="contatos__pesquisa-title">Lista De Contatos</h1>
         </header>
-        <!-- <form class="" action="#"></form> -->
+        <section class="contatos__lista">
+          <article class="contato__card">
+            <h2>João Silva</h2>
+            <p>joao@email.com</p>
+            <span>Trabalho</span>
+          </article>
+
+          <article class="contato__card">
+            <h2>Maria Santos</h2>
+            <p>maria@email.com</p>
+            <span>Pessoal</span>
+          </article>
+
+          <article class="contato__card">
+            <h2>Pedro Souza</h2>
+            <p>pedro@email.com</p>
+            <span>Família</span>
+          </article>
+          <article class="contato__card">
+            <h2>Maria Santos</h2>
+            <p>maria@email.com</p>
+            <span>Pessoal</span>
+          </article>
+
+          <article class="contato__card">
+            <h2>Pedro Souza</h2>
+            <p>pedro@email.com</p>
+            <span>Família</span>
+          </article>
+          <article class="contato__card">
+            <h2>Maria Santos</h2>
+            <p>maria@email.com</p>
+            <span>Pessoal</span>
+          </article>
+
+          <article class="contato__card">
+            <h2>Pedro Souza</h2>
+            <p>pedro@email.com</p>
+            <span>Família</span>
+          </article>
+          <article class="contato__card">
+            <h2>Maria Santos</h2>
+            <p>maria@email.com</p>
+            <span>Pessoal</span>
+          </article>
+
+          <article class="contato__card">
+            <h2>Pedro Souza</h2>
+            <p>pedro@email.com</p>
+            <span>Família</span>
+          </article>
+        </section>
       </section>
     </main>
     <footer class="footer"></footer>

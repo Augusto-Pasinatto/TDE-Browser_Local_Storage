@@ -7,12 +7,78 @@
   /* gap: 1rem; */
 }
 
+/* FILTRAGEM */
 .filtro {
   background-color: var(--background-box);
   margin: 1rem;
   border: 1px solid var(--border);
   border-radius: 8px;
 }
+.filtro__pesquisa-tipo {
+  display: flex;
+  gap: 2rem;
+  color: var(--primary);
+}
+.filtro__section-pesquisa {
+  display: flex;
+  flex-direction: column;
+}
+.filtro__section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.favorito_input {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 30px;
+  height: 30px;
+
+  border: 2px solid var(--border);
+  border-radius: 15px;
+  background-color: var(--secondary);
+
+  cursor: pointer;
+}
+.favorito_input:hover {
+  background-color: var(--secondary-light);
+}
+.favorito_input:checked {
+  background-color: var(--primary);
+  border-color: var(--primary-light);
+}
+.favorito_label {
+  color: var(--primary);
+  font-size: 2rem;
+}
+.favorito_label:hover {
+  color: var(--primary-hover);
+}
+.filtro__categoria {
+  display: flex;
+  flex-direction: column;
+}
+.categoria__label {
+  font-size: 2rem;
+  color: var(--primary);
+}
+.categoria__input {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+  background-color: var(--primary-dark);
+  color: var(--secondary-light);
+  cursor: pointer;
+}
+.categoria__input:hover {
+  background-color: var(--primary-hover);
+}
+
+/* FILTRAGEM */
 
 .contatos {
   background-color: var(--background-box);
@@ -28,14 +94,14 @@
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 .contatos__pesquisa-filtro {
+  max-width: 70%;
   background-color: var(--background-dark);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 0.5rem 4rem 0.5rem 1rem;
-  margin: 1rem;
+  padding: 0.5rem 1rem;
   color: var(--primary);
   font-size: medium;
 }
@@ -46,14 +112,12 @@
 }
 .contatos__pesquisa-botao {
   background-color: var(--primary);
+  min-width: 60%;
   padding: 0.5rem 1rem;
   border: 1px solid var(--border);
   border-radius: 16px;
   color: var(--secondary);
   font-size: medium;
-}
-.margem__direita {
-  margin-right: 1rem;
 }
 .contatos__pesquisa-botao:hover {
   background-color: var(--primary-hover);
@@ -70,4 +134,36 @@
   margin: 1rem 0;
   color: var(--primary);
   /* text-transform: uppercase; */
+}
+
+.contatos__lista {
+  background-color: red;
+  /* height: 100%;
+  width: 100% fit-content;
+  margin: 1rem; */
+
+  max-height: 400px;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  margin: 1rem;
+  padding: 1rem;
+}
+.contato__card {
+  flex-shrink: 0;
+  width: 30%;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--background-dark);
+}
+.contato__card h2 {
+  margin: 0 0 8px;
+}
+.contato__card p {
+  margin: 0 0 8px;
 }
