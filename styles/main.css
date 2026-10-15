@@ -3,8 +3,13 @@
   border-right: 1px solid var(--border); */
   margin: 0 0.5rem;
   display: grid;
-  grid-template-columns: 20% auto;
-  /* gap: 1rem; */
+
+  /* FIX do scroll: */
+  grid-template-columns: 20% minmax(0, 1fr);
+  gap: 0 1rem;
+
+  height: calc(100vh - var(--header-height));
+  min-height: 0;
 }
 
 /* FILTRAGEM */
@@ -85,6 +90,13 @@
   margin: 1rem 1rem 1rem 0rem;
   border: 1px solid var(--border);
   border-radius: 8px;
+
+  /* FIX do scroll: */
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .contatos__pesquisa {
@@ -137,33 +149,145 @@
 }
 
 .contatos__lista {
-  background-color: red;
+  /* background-color: red; */
   /* height: 100%;
   width: 100% fit-content;
   margin: 1rem; */
 
-  max-height: 400px;
+  /* FIX do scroll  */
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+
+  /* max-height: 400px; */
   overflow-y: auto;
+  overflow-x: hidden;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
   flex-wrap: wrap;
   gap: 1rem;
-
   margin: 1rem;
   padding: 1rem;
 }
+/* CARD DE CONTATO */
 .contato__card {
-  flex-shrink: 0;
+  flex: 0 0 auto;
   width: 30%;
-  padding: 1rem;
+  min-width: 16rem;
+  height: fit-content;
+  padding: 1rem 1rem 1rem 1.25rem;
   border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
   border-radius: 8px;
+  background-color: var(--background);
+  box-shadow: 0 1px 3px rgba(27, 36, 25, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1rem;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.contato__card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(27, 36, 25, 0.12);
+}
+
+.contato__card-info {
+  min-width: 0; /* permite o ellipsis nos textos longos */
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.contato__card-nome {
+  color: var(--primary);
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+.contato__card-email,
+.contato__card-telefone {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Favorito em cima, tag embaixo */
+.contato__card-side {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+.contato__card-acoes {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.contato__card-botao {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-light);
+}
+.contato__card-botao:hover {
   background-color: var(--background-dark);
+  color: var(--primary);
 }
-.contato__card h2 {
-  margin: 0 0 8px;
+.contato__card-botao svg {
+  width: 18px;
+  height: 18px;
 }
-.contato__card p {
-  margin: 0 0 8px;
+.contato__card-favorito {
+  width: 28px;
+  height: 28px;
+}
+.contato__card-favorito--off {
+  opacity: 0.2;
+}
+
+.contato__card-tag {
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--secondary-light);
+  color: var(--primary-dark);
+}
+.contato__card-tag--pessoal {
+  background-color: var(--secondary-light);
+  color: var(--primary-dark);
+}
+.contato__card-tag--trabalho {
+  background-color: var(--primary);
+  color: var(--text-on-primary);
+}
+.contato__card-tag--familia {
+  background-color: var(--accent-light);
+  color: #5c3a14;
+}
+.contato__card-tag--amigos {
+  background-color: var(--secondary);
+  color: var(--primary-dark);
+}
+.contato__card-tag--outros {
+  background-color: var(--border);
+  color: var(--text);
+}
+/* CARD DE CONTATO */
+
+.TESTE_CARD_APAGAR {
+  /* display: none; */
 }

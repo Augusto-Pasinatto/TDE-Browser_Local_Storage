@@ -1,0 +1,189 @@
+/* POP-UP (dialog) */
+.modal {
+  /* o reset zera a margem, que o dialog usa para centralizar */
+  margin: auto;
+  width: min(640px, 92vw);
+  max-height: 90vh;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--background);
+  color: var(--text);
+  box-shadow: 0 20px 50px rgba(16, 48, 13, 0.3);
+}
+.modal[open] {
+  animation: modal-entrada 0.2s ease-out;
+}
+.modal::backdrop {
+  background-color: rgba(16, 48, 13, 0.45);
+  backdrop-filter: blur(3px);
+}
+
+@keyframes modal-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: var(--primary);
+  color: var(--text-on-primary);
+}
+.modal__titulo {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.modal__fechar {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-on-primary);
+  font-size: 1.6rem;
+  line-height: 1;
+}
+.modal__fechar:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Modo edição: cabeçalho muda de cor para indicar visualmente */
+.modal--edicao .modal__header {
+  background-color: var(--accent-hover);
+}
+.modal--edicao .modal__fechar:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.modal__corpo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 1rem;
+  padding: 1.5rem;
+}
+
+.modal__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.modal__campo--inteiro {
+  grid-column: 1 / -1;
+}
+.modal__campo label {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.modal__campo input:not([type="checkbox"]),
+.modal__campo select {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--background-box);
+  color: var(--text);
+  font-size: 1rem;
+}
+.modal__campo input:not([type="checkbox"]):focus,
+.modal__campo select:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(63, 113, 56, 0.25);
+}
+/* só marca erro depois que o usuário mexeu no campo */
+.modal__campo input:user-invalid,
+.modal__campo select:user-invalid {
+  border-color: #b3261e;
+}
+
+/* Favorito: checkbox com as estrelas de assets */
+.modal__campo--favorito {
+  flex-direction: row;
+  align-items: center;
+  align-self: end;
+  gap: 0.6rem;
+  padding-bottom: 0.4rem;
+}
+.modal__campo--favorito label {
+  cursor: pointer;
+}
+.modal__favorito-input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  background: url("../assets/no-favorite.png") center / contain no-repeat;
+  opacity: 0.2;
+  cursor: pointer;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+.modal__favorito-input:hover {
+  background-image: url("../assets/favorite-hover.png");
+  opacity: 1;
+  transform: scale(1.1);
+}
+.modal__favorito-input:checked {
+  background-image: url("../assets/favorite.png");
+  opacity: 1;
+}
+.modal__favorito-input:focus-visible {
+  outline: 2px solid var(--primary-light);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.modal__acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  background-color: var(--background-box);
+}
+.modal__botao {
+  padding: 0.6rem 1.4rem;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.modal__botao--primario {
+  border: 1px solid var(--primary);
+  background-color: var(--primary);
+  color: var(--text-on-primary);
+}
+.modal__botao--primario:hover {
+  background-color: var(--primary-hover);
+}
+.modal__botao--secundario {
+  border: 1px solid var(--border);
+  background-color: transparent;
+  color: var(--primary);
+}
+.modal__botao--secundario:hover {
+  background-color: var(--background-dark);
+}
+
+@media (max-width: 520px) {
+  .modal__corpo {
+    grid-template-columns: 1fr;
+  }
+}
+/* POP-UP (dialog) */

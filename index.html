@@ -53,7 +53,9 @@
           </select>
         </section>
         <section class="filtro__section">
-          <button class="contatos__pesquisa-botao">Adicionar Contato</button>
+          <button id="botao-adicionar" class="contatos__pesquisa-botao">
+            Adicionar Contato
+          </button>
         </section>
         <section class="filtro__section">
           <button class="contatos__pesquisa-botao">Editar Contato</button>
@@ -63,61 +65,158 @@
         <header class="contatos__pesquisa">
           <h1 class="contatos__pesquisa-title">Lista De Contatos</h1>
         </header>
-        <section class="contatos__lista">
-          <article class="contato__card">
-            <h2>João Silva</h2>
-            <p>joao@email.com</p>
-            <span>Trabalho</span>
-          </article>
-
-          <article class="contato__card">
-            <h2>Maria Santos</h2>
-            <p>maria@email.com</p>
-            <span>Pessoal</span>
-          </article>
-
-          <article class="contato__card">
-            <h2>Pedro Souza</h2>
-            <p>pedro@email.com</p>
-            <span>Família</span>
-          </article>
-          <article class="contato__card">
-            <h2>Maria Santos</h2>
-            <p>maria@email.com</p>
-            <span>Pessoal</span>
-          </article>
-
-          <article class="contato__card">
-            <h2>Pedro Souza</h2>
-            <p>pedro@email.com</p>
-            <span>Família</span>
-          </article>
-          <article class="contato__card">
-            <h2>Maria Santos</h2>
-            <p>maria@email.com</p>
-            <span>Pessoal</span>
-          </article>
-
-          <article class="contato__card">
-            <h2>Pedro Souza</h2>
-            <p>pedro@email.com</p>
-            <span>Família</span>
-          </article>
-          <article class="contato__card">
-            <h2>Maria Santos</h2>
-            <p>maria@email.com</p>
-            <span>Pessoal</span>
-          </article>
-
-          <article class="contato__card">
-            <h2>Pedro Souza</h2>
-            <p>pedro@email.com</p>
-            <span>Família</span>
-          </article>
+        <section>
+          <!-- 
+          Vou adicionar indicador da quantidade total de contatos
+          E botão para ordenar contatos alfabeticamente (A–Z / Z–A) no futuro
+          -->
         </section>
+        <!-- os cards são gerados pelo JS (renderizarContatos) -->
+        <section class="contatos__lista"></section>
       </section>
     </main>
     <footer class="footer"></footer>
+
+    <!-- MODELO DO CARD: clonado pelo JS para cada contato -->
+    <template id="template-contato-card">
+      <article class="contato__card">
+        <div class="contato__card-info">
+          <h2 class="contato__card-nome"></h2>
+          <p class="contato__card-email"></p>
+          <p class="contato__card-telefone"></p>
+        </div>
+        <div class="contato__card-side">
+          <div class="contato__card-acoes">
+            <button
+              type="button"
+              class="contato__card-botao"
+              data-acao="editar"
+              aria-label="Editar contato"
+              title="Editar"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+              </svg>
+            </button>
+            <img class="contato__card-favorito" src="" alt="" />
+          </div>
+          <span class="contato__card-tag"></span>
+        </div>
+      </article>
+    </template>
+
+    <!-- POP-UP: CADASTRO / EDIÇÃO DE CONTATO -->
+    <dialog
+      id="modal-contato"
+      class="modal"
+      aria-labelledby="modal-contato-titulo"
+    >
+      <form id="form-contato" class="modal__form">
+        <!-- vazio = cadastro; preenchido = edição do contato com esse id -->
+        <input type="hidden" name="id" />
+        <header class="modal__header">
+          <h2 id="modal-contato-titulo" class="modal__titulo">Novo Contato</h2>
+          <button
+            type="button"
+            class="modal__fechar"
+            data-fechar-modal
+            aria-label="Fechar"
+          >
+            &times;
+          </button>
+        </header>
+
+        <div class="modal__corpo">
+          <div class="modal__campo modal__campo--inteiro">
+            <label for="contato-nome">Nome</label>
+            <input
+              id="contato-nome"
+              name="nome"
+              type="text"
+              placeholder="Ex.: João Silva"
+              maxlength="80"
+              autocomplete="name"
+              pattern=".*\S.*"
+              required
+            />
+          </div>
+
+          <div class="modal__campo">
+            <label for="contato-email">E-mail</label>
+            <input
+              id="contato-email"
+              name="email"
+              type="email"
+              placeholder="joao@email.com"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="modal__campo">
+            <label for="contato-telefone">Telefone</label>
+            <input
+              id="contato-telefone"
+              name="telefone"
+              type="tel"
+              placeholder="(54) 98888-7777"
+              autocomplete="tel"
+              pattern="[0-9\s\(\)\+\-]{8,20}"
+              title="Use apenas números, espaços, parênteses, + e -"
+              required
+            />
+          </div>
+
+          <div class="modal__campo">
+            <label for="contato-categoria">Categoria</label>
+            <select id="contato-categoria" name="categoria" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="pessoal">Pessoal</option>
+              <option value="trabalho">Trabalho</option>
+              <option value="familia">Família</option>
+              <option value="amigos">Amigos</option>
+              <option value="outros">Outros</option>
+            </select>
+          </div>
+
+          <div class="modal__campo modal__campo--favorito">
+            <input
+              id="contato-favorito"
+              name="favorito"
+              type="checkbox"
+              class="modal__favorito-input"
+            />
+            <label for="contato-favorito">Marcar como favorito</label>
+          </div>
+        </div>
+
+        <footer class="modal__acoes">
+          <button
+            type="button"
+            class="modal__botao modal__botao--secundario"
+            data-fechar-modal
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            id="modal-contato-salvar"
+            class="modal__botao modal__botao--primario"
+          >
+            Salvar Contato
+          </button>
+        </footer>
+      </form>
+    </dialog>
     <script type="module" src="script.js"></script>
   </body>
 </html>
