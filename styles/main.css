@@ -171,6 +171,15 @@
   margin: 1rem;
   padding: 1rem;
 }
+/* MENSAGEM DE LISTA VAZIA / SEM RESULTADOS */
+.contatos__vazio {
+  width: 100%;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
 /* CARD DE CONTATO */
 .contato__card {
   flex: 0 0 auto;

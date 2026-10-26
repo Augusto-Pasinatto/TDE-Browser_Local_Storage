@@ -40,7 +40,16 @@ function criarCard(contato) {
   return card;
 }
 
-export function renderizarContatos(contatos) {
+// mensagemVazia: texto exibido no lugar dos cards quando não há nada para mostrar
+export function renderizarContatos(contatos, mensagemVazia) {
+  if (contatos.length === 0) {
+    const mensagem = document.createElement("p");
+    mensagem.className = "contatos__vazio";
+    mensagem.textContent = mensagemVazia;
+    listaContatos.replaceChildren(mensagem);
+    return;
+  }
+
   listaContatos.replaceChildren(...contatos.map(criarCard));
 }
 
