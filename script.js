@@ -3,6 +3,7 @@ import {
   editarContato,
   obterContatoPorId,
   obterContatos,
+  removerContato,
 } from "./scripts/contatos.js";
 import {
   abrirModalContato,
@@ -16,6 +17,7 @@ import { filtrarContatos } from "./scripts/filtros.js";
 const botaoAdicionar = document.querySelector("#botao-adicionar");
 const formContato = document.querySelector("#form-contato");
 const listaContatos = document.querySelector(".contatos__lista");
+const botaoRemover = document.querySelector("#modal-contato-remover");
 
 renderizarContatos(obterContatos());
 
@@ -51,6 +53,17 @@ formContato.addEventListener("submit", (evento) => {
     adicionarContato(contato);
   }
 
+  fecharModalContato();
+  renderizarContatos(obterContatos());
+});
+
+botaoRemover.addEventListener("click", () => {
+  const { id, nome } = formContato.elements;
+  if (!id.value) return;
+
+  if (!confirm(`Remover o contato "${nome.value}"?`)) return;
+
+  removerContato(id.value);
   fecharModalContato();
   renderizarContatos(obterContatos());
 });

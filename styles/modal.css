@@ -181,6 +181,22 @@
   background-color: var(--background-dark);
 }
 
+/* Remover: escondido no cadastro, aparece só no modo edição */
+.modal__botao--remover {
+  display: none;
+  margin-right: auto; /* empurra para a esquerda, longe do Salvar */
+  border: 1px solid #b3261e;
+  background-color: transparent;
+  color: #b3261e;
+}
+.modal--edicao .modal__botao--remover {
+  display: inline-block;
+}
+.modal__botao--remover:hover {
+  background-color: #b3261e;
+  color: var(--text-on-primary);
+}
+
 @media (max-width: 520px) {
   .modal__corpo {
     grid-template-columns: 1fr;

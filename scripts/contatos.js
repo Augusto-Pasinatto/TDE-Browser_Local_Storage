@@ -46,10 +46,19 @@ export function adicionarContato(dados) {
 }
 
 export function editarContato(id, dados) {
-  const contato = contatos.find((contato) => contato.id === id);
+  const contato = contatos.find((contato) => contato.id === id); // .find procura até achar
   if (!contato) return null;
 
-  Object.assign(contato, normalizarDados(dados));
+  Object.assign(contato, normalizarDados(dados)); //copia as propriedades de um ou mais objetos para um objeto de destino // e chama o trim
   salvarContatos(contatos);
   return contato;
+}
+
+export function removerContato(id) {
+  const indice = contatos.findIndex((contato) => contato.id === id); // .findIndex procura até achar pelo index
+  if (indice === -1) return false;
+
+  contatos.splice(indice, 1); // .splice = remove um elemento da lista na posição encontrada
+  salvarContatos(contatos);
+  return true;
 }
